@@ -1,0 +1,36 @@
+.standr-page {
+  background-image:
+    radial-gradient(circle at 10% -10%, rgba(180, 74, 160, 0.08), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(242, 141, 51, 0.11), transparent 35%),
+    linear-gradient(180deg, #06070f 0%, #05070d 100%);
+}
+
+.standr-waitlist-strip {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+  border: 1px solid rgba(59, 190, 101, 0.58);
+  background: rgba(255, 255, 255, 0.96);
+  color: #1a9c4f;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+}
+
+.standr-waitlist-strip span {
+  margin-inline: 0.65rem;
+  color: #3fba63;
+}
+
+@media (max-width: 768px) {
+  .standr-waitlist-strip {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.82rem;
+  }
+}

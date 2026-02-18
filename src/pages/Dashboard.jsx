@@ -61,7 +61,7 @@ const Dashboard = () => {
 
   return (
 
-    <div className="relative sm:-8 p-4 bg-[#13131a] min-h-screen flex flex-row">
+    <div className="relative sm:-8 min-h-screen bg-premium-bg p-4 flex flex-row">
 
 
 
@@ -69,14 +69,14 @@ const Dashboard = () => {
         <Sidebar />
       </div>
 
-      <div className="flex-1 max-sm:w-full max-w-[1280px] mx-auto sm:pr-5">
+      <div className="flex-1 mx-auto max-w-[1280px] max-sm:w-full sm:pr-5">
         <Navbar />
 
 
         <div>
 
-          <h1 className='text-gray-500 font-semibold pb-5 '>Welcome to EOSI Finance Traders</h1>
-          <div className='flex flex-row sm:w-[990px] w-full rounded-t-lg items-center py-4 px-10 space-x-14 bg-[#1c1c24] text-purple-700 font-semibold text-xs'>
+          <h1 className='pb-5 font-epilogue text-sm font-semibold text-muted'>Welcome to EOSI Finance Traders</h1>
+          <div className='surface-2 flex w-full flex-row items-center space-x-8 rounded-t-lg px-6 py-4 text-[11px] font-semibold text-secondary sm:w-[990px]'>
 
             <div className='flex flex-row items-center space-x-2 '>
               <h1>Status</h1>
@@ -93,7 +93,7 @@ const Dashboard = () => {
               <TiArrowSortedUp className='text-base pt-1' />
             </div>
 
-            <h1 className='pl-20'>min.Profit %</h1>
+            <h1 className='pl-10'>Min.Profit %</h1>
             <h1>min.Capital USD</h1>
 
             <div className='flex flex-row items-center space-x-2 '>

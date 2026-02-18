@@ -1,0 +1,98 @@
+export const StandRPerpsCoreAbi = [
+  {
+    type: "function",
+    name: "getPosition",
+    inputs: [{ name: "positionId", type: "bytes32", internalType: "bytes32" }],
+    outputs: [
+      {
+        name: "",
+        type: "tuple",
+        internalType: "struct StandRPerpsCore.Position",
+        components: [
+          { name: "trader", type: "address", internalType: "address" },
+          { name: "indexToken", type: "address", internalType: "address" },
+          { name: "collateralToken", type: "address", internalType: "address" },
+          { name: "size", type: "uint96", internalType: "uint96" },
+          { name: "collateral", type: "uint96", internalType: "uint96" },
+          { name: "entryPrice", type: "uint128", internalType: "uint128" },
+          { name: "side", type: "uint8", internalType: "enum StandRPerpsCore.PositionSide" },
+          { name: "openTimestamp", type: "uint64", internalType: "uint64" },
+          { name: "lastFundingTimestamp", type: "uint64", internalType: "uint64" },
+          { name: "cumulativeFundingPerUnit", type: "int256", internalType: "int256" },
+        ],
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getUserPositions",
+    inputs: [{ name: "user", type: "address", internalType: "address" }],
+    outputs: [{ name: "", type: "bytes32[]", internalType: "bytes32[]" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getTVL",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getInsuranceFund",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getInsuranceFundHealth",
+    inputs: [],
+    outputs: [
+      { name: "balance", type: "uint256", internalType: "uint256" },
+      { name: "totalOpenInterest", type: "uint256", internalType: "uint256" },
+      { name: "healthRatio", type: "uint256", internalType: "uint256" },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getFundingRate",
+    inputs: [{ name: "indexToken", type: "address", internalType: "address" }],
+    outputs: [
+      {
+        name: "",
+        type: "tuple",
+        internalType: "struct StandRPerpsCore.FundingRate",
+        components: [
+          { name: "longRate", type: "int256", internalType: "int256" },
+          { name: "shortRate", type: "int256", internalType: "int256" },
+          { name: "lastUpdate", type: "uint256", internalType: "uint256" },
+        ],
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "openPosition",
+    inputs: [
+      { name: "indexToken", type: "address", internalType: "address" },
+      { name: "collateralToken", type: "address", internalType: "address" },
+      { name: "collateralAmount", type: "uint96", internalType: "uint96" },
+      { name: "size", type: "uint96", internalType: "uint96" },
+      { name: "side", type: "uint8", internalType: "uint8" },
+      { name: "acceptablePrice", type: "uint128", internalType: "uint128" },
+    ],
+    outputs: [{ name: "positionId", type: "bytes32", internalType: "bytes32" }],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "closePosition",
+    inputs: [{ name: "positionId", type: "bytes32", internalType: "bytes32" }],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+] as const;

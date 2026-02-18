@@ -1,241 +1,114 @@
-import React from 'react';
-import '../assets/header.css'; // Import the CSS file for styles
-import { ConnectWallet } from "@thirdweb-dev/react";
-
+import React, { useEffect, useRef, useState } from "react";
+import { FiChevronDown } from "react-icons/fi";
+import "../assets/header.css";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
 
-    const handleLinkClick = (url) => {
-        window.open(url, '_blank');
+  useEffect(() => {
+    const onClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
     };
-    return (
 
-        <>
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, []);
 
+  const openExternal = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+    setIsOpen(false);
+  };
 
+  const appOrigin = window.location.origin;
 
-            <section id='connectwallets'>
+  return (
+    <section className="pt-2">
+      <header className="section-shell__inner">
+        <div className="surface-1 px-4 py-3 md:px-6 md:py-4">
+          <div className="flex items-center justify-between gap-5">
+            <a href="/" aria-current="page" className="flex items-center gap-3">
+              <img
+                src="/assets/6726ca0f328abbff95ca0511/672f16cbf73995494b87055d_Secury.png"
+                loading="eager"
+                alt="EOSI Finance logo"
+                className="h-10 w-auto"
+              />
+            </a>
 
+            <nav className="hidden items-center gap-6 md:flex">
+              <a href="/" className="text-secondary transition-colors duration-180 hover:text-primary">
+                Home
+              </a>
 
+              <div
+                ref={menuRef}
+                className="relative"
+                onMouseEnter={() => setIsOpen(true)}
+                onMouseLeave={() => setIsOpen(false)}
+              >
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() => setIsOpen((prev) => !prev)}
+                  className="flex items-center gap-1 text-secondary transition-colors duration-180 hover:text-primary"
+                >
+                  <span>Products</span>
+                  <FiChevronDown className={`transition-transform duration-180 ${isOpen ? "rotate-180" : ""}`} />
+                </button>
 
-                <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="header is-fixed w-nav" >
-                    <div className="header-shadow"></div>
-
-
-
-                    <div className="lg:px-[150px] py-1 px-4 flex items-center justify-between bg-gradient-to-r from-[#7D2E71] from-10% to-[#C57D28] to-90% hover:to-purple-400" onClick={() => handleLinkClick('https://ico.eosifinance.org')}>
-                        <div className="text-xs lg:flex flex-col lg:items-start lg:text-sm">
-                            <button className="text-center font-semibold">
-                                $EOSIF Token Presale is LIVE. Buy now on our website and get a 10% discount or buy on different launchpads.
-                            </button>
-
-                        </div>
-
-                        <button className="font-bold text-xs w-[230px] sm:w-[200px] py-3 rounded-xl shadow-4xl bg-gradient-to-r from-[#02FA1B] from-10% to-green-700 to-90% slow-bounce text-black">
-                            BUY $EOSIF NOW
-                        </button>
-                    </div>
-
-
-
-
-
-                    <div className="header-container w-container">
-                        <div className="header-content-wrap">
-                            <div className="logo-menu-wrapper">
-                                {/* Logo and Brand Link */}
-                                <a href="/" aria-current="page" className="brand w-nav-brand w--current">
-                                    <img
-                                        src="/assets/6726ca0f328abbff95ca0511/672f16cbf73995494b87055d_Secury.png"
-                                        loading="eager"
-                                        alt="Brand Logo"
-                                        className="logo"
-                                    />
-                                </a>
-                                {/* Navigation Menu */}
-                                <nav role="navigation" className="nav-menu w-nav-menu">
-                                    <div data-hover="true" data-delay="0" data-w-id="45b7d535-2784-9648-82c7-c90bef9c1d98" className="dropdown w-dropdown">
-                                        {/* Dropdown Menu (you can add items here if needed) */}
-                                    </div>
-                                    {/* Nav Items */}
-                                    <a href="/" aria-current="page" className="nav-item w-nav-link w--current">Home</a>
-
-
-                                    {/* Products Dropdown */}
-                                    <div className="dropdown w-dropdown">
-                                        <a href="#" className="nav-item w-nav-link">Products</a>
-                                        <div className="w-dropdown-list">
-                                            <a href="https://t.me/StandR_AI_BOT" className="dropdown-link">StandR AI Bot
-                                                <span
-                                                    style={{
-                                                        color: 'green',
-                                                        fontSize: '10px',
-                                                        fontWeight: 'bolder',
-                                                        marginLeft: '5px',
-                                                    }}
-                                                    target="_blank" // Opens the link in a new tab
-                                                    rel="noopener noreferrer" // Security feature to prevent potential vulnerabilities
-                                                >
-                                                    (new)
-                                                </span>
-                                            </a>
-                                            <a href="#" className="dropdown-link">Copy-Trading
-                                                <span
-                                                    style={{
-                                                        color: 'green',
-                                                        fontSize: '10px',
-                                                        fontWeight: 'bolder',
-                                                        marginLeft: '5px',
-                                                    }}
-                                                >
-                                                    (coming soon)
-                                                </span>
-                                            </a>
-                                            <a href="#" className="dropdown-link">Buy a Funded Account
-                                                <span
-                                                    style={{
-                                                        color: 'green',
-                                                        fontSize: '10px',
-                                                        fontWeight: 'bolder',
-                                                        marginLeft: '5px',
-                                                    }}
-                                                >   
-                                                    (coming soon)
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-
-
-
-                                    <a href="#roadmap" className="nav-item w-nav-link">Roadmap</a>
-                                    <a href="#team" className="nav-item w-nav-link">Team</a>
-                                    <a href="https://medium.com/@eosifinance_ai" className="nav-item w-nav-link"
-                                        target="_blank" // Opens the link in a new tab
-                                        rel="noopener noreferrer" // Security feature to prevent potential vulnerabilities
-                                    >Blog</a>
-
-                                    <a href="https://eosi-finance-1.gitbook.io/eosi-finance-documentations" className="nav-item w-nav-link"
-                                        target="_blank" // Opens the link in a new tab
-                                        rel="noopener noreferrer" // Security feature to prevent potential vulnerabilities
-                                    >White Paper</a>
-
-                                    <a href="/" aria-current="page" className="nav-item w-nav-link w--current track-button">Track</a>
-
-
-
-                                    <a
-                                        data-w-id="ada5a5cf-e4f6-3144-9da9-d4e057f96874"
-
-                                        className="nav-item w-nav-link w--current track-button" style={{
-                                            backgroundColor: 'black', // Default background color is green
-                                            color: 'white',           // Text color
-                                            padding: '10px 10px',     // Example padding
-                                            borderRadius: '9999px',      // Example border radius
-                                            outline: '1px solid white',
-                                            border: '1px',           // Remove the border
-                                            transition: 'background-color 0.3s', // Smooth transition for background color change
-                                        }}
-                                    >
-                                        <div className="text-medium font-weight-50">
-
-                                            <ConnectWallet
-                                                style={{
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    borderRadius: '9999px',
-                                                    backgroundColor: 'black',
-                                                    width: '0px',
-                                                    height: '0px',
-                                                    color: 'white',
-                                                    border: 'none',
-                                                    cursor: 'pointer',
-                                                    transition: 'background-color 0.3s', // Smooth transition for hover effect
-                                                }}
-                                                onMouseOver={(e) => e.target.style.backgroundColor = '#6c2bd7'} // Change to purple on hover
-                                                onMouseOut={(e) => e.target.style.backgroundColor = 'black'} // Revert back to black
-                                            />
-
-
-                                        </div>
-
-
-                                    </a>
-
-
-
-
-
-
-
-                                </nav>
-
-                            </div>
-
-
-                            <div className="menu-button-wrap">
-                                <a
-                                    data-w-id="ada5a5cf-e4f6-3144-9da9-d4e057f96874"
-
-                                    className="button outline mobile-hidden w-inline-block button-hover-effect" style={{
-                                        backgroundColor: 'black', // Default background color is green
-                                        color: 'white',           // Text color
-                                        padding: '10px 10px',     // Example padding
-                                        borderRadius: '9999px',      // Example border radius
-                                        outline: '1px solid white',
-                                        border: '1px',           // Remove the border
-                                        transition: 'background-color 0.3s', // Smooth transition for background color change
-                                    }}
-                                >
-                                    <div className="text-medium font-weight-50">
-
-                                        <ConnectWallet
-                                            style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                borderRadius: '9999px',
-                                                backgroundColor: 'black',
-                                                width: '0px',
-                                                height: '0px',
-                                                color: 'white',
-                                                border: 'none',
-                                                cursor: 'pointer',
-                                                transition: 'background-color 0.3s', // Smooth transition for hover effect
-                                            }}
-                                            onMouseOver={(e) => e.target.style.backgroundColor = '#6c2bd7'} // Change to purple on hover
-                                            onMouseOut={(e) => e.target.style.backgroundColor = 'black'} // Revert back to black
-                                        />
-
-
-                                    </div>
-
-                                    <img
-                                        src="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05a9_arrow-right.png"
-                                        loading="lazy"
-                                        data-w-id="ada5a5cf-e4f6-3144-9da9-d4e057f96877"
-                                        alt=""
-                                        className="arrow-icon"
-                                    />
-                                </a>
-
-                                <div className="menu-button w-nav-button">
-                                    <div className="w-icon-nav-menu"></div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-                        </div>
-                    </div>
+                <div
+                  className={`absolute left-0 top-[34px] z-30 min-w-[320px] rounded-xl border border-white/10 bg-[#111522] p-3 shadow-premium transition-all duration-180 ${
+                    isOpen ? "visible opacity-100" : "invisible opacity-0"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    className="block w-full rounded-lg px-4 py-3 text-left text-sm text-secondary hover:bg-white/5 hover:text-primary"
+                    onClick={() => openExternal(`${appOrigin}/standr`)}
+                  >
+                    STANDR DEX
+                  </button>
+                  <button
+                    type="button"
+                    className="mt-1 block w-full rounded-lg px-4 py-3 text-left text-sm text-secondary hover:bg-white/5 hover:text-primary"
+                    onClick={() => openExternal(`${appOrigin}/prop-firm`)}
+                  >
+                    Buy a Funded Account
+                  </button>
                 </div>
-            </section>
-        </>
-    );
+              </div>
+
+              <a href="#roadmap" className="text-secondary transition-colors duration-180 hover:text-primary">
+                Roadmap
+              </a>
+              <a href="#team" className="text-secondary transition-colors duration-180 hover:text-primary">
+                Team
+              </a>
+              <a
+                href="https://medium.com/@eosifinance_ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary transition-colors duration-180 hover:text-primary"
+              >
+                Blog
+              </a>
+              <a
+                href="https://eosi-finance-1.gitbook.io/eosi-finance-documentations"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary transition-colors duration-180 hover:text-primary"
+              >
+                Whitepaper
+              </a>
+            </nav>
+          </div>
+        </div>
+      </header>
+    </section>
+  );
 };
 
 export default Header;

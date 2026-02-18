@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import '../assets/socials.css'; // Import the CSS file for styles
+import { PremiumButton } from '../components';
 
 
 const FooterNewsletter = () => {
@@ -44,8 +45,8 @@ const FooterNewsletter = () => {
   };
 
   return (
-    <div className="footer-newsletter-block">
-      <p className="text-small footer-part-three-heading">STAY UP TO DATE</p>
+    <div className="footer-newsletter-block w-full max-w-[360px]">
+      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e7edf9]">STAY UP TO DATE</p>
       <div className="footer-newsletter w-form">
         <form
           id="subscribe-form"
@@ -56,7 +57,7 @@ const FooterNewsletter = () => {
           onSubmit={handleSubmit}
         >
           <input
-            className="newsletter-form-input w-input"
+            className="newsletter-form-input w-input mt-5 rounded-xl border border-white/10 bg-white/[0.07] px-4 py-3 text-sm text-[#e6eefb]"
             maxLength="256"
             name="email"
             data-name="Email"
@@ -67,21 +68,17 @@ const FooterNewsletter = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <button
-            type="submit"
-            className="button width-full w-button"
-            disabled={isLoading}
-          >
-            {isLoading ? 'Subscribing...' : 'Subscribe Now'}
-          </button>
+          <PremiumButton as="button" type="submit" variant="brand" size="md" className="mt-3 w-full" disabled={isLoading}>
+            {isLoading ? 'Subscribing...' : 'Subscribe now'}
+          </PremiumButton>
         </form>
         {successMessage && <div className="w-form-done" style={{ color: 'green' }}><div>{successMessage}</div></div>}
         {errorMessage && <div className="w-form-fail" style={{ color: 'red' }}><div>{errorMessage}</div></div>}
 
         {/* Social Media Links */}
-        <div className="social-links" style={{ marginTop: '90px', marginBottom: '20px' }}>
+        <div className="social-links" style={{ marginTop: '28px', marginBottom: '8px' }}>
           
-          <p className="text-small" >Follow Us</p>
+          <p className="text-small text-[#d8e0f2]">Follow us</p>
           <div className="social-icons">
             <a
               href="mailto:info@eosifinance.org"

@@ -8,4 +8,15 @@ export default defineConfig({
   define: {
     "process.env": {},
   },
+  esbuild: {
+    target: "esnext",
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: "esnext",
+    },
+  },
+  build: {
+    target: "esnext",
+  },
 });

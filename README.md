@@ -1,42 +1,86 @@
-## Getting Started
+## EOSI Finance Frontend
 
-Create a project using this example:
+Premium presale-stage frontend for EOSI Finance, positioned as an AI-powered Web3 prop-firm platform.
 
-```bash
-npx thirdweb create --template vite-javascript-starter
-```
+## Run Locally (No Docker)
 
-You can start editing the page by modifying `src/main.jsx`. The page auto-updates as you edit the file.
+This repository currently contains the frontend app only. No backend service is required to run the current website.
 
-On `src/index.jsx`, you'll find our `ThirdwebProvider` wrapping your app,
-this is necessary for our [hooks](https://portal.thirdweb.com/react) and
-[UI Components](https://portal.thirdweb.com/ui-components) to work.
+### Prerequisites
 
-## Environment Variables
+- Node.js 22.x (recommended)
+- npm 10+
 
-To run this project, you will need to add environment variables. Check the `.env.example` file for all the environment variables required and add it to `.env.local` file or set them up on your hosting provider.
-
-### Deploy to IPFS
-
-Deploy a copy of your application to IPFS using the following command:
+### Install
 
 ```bash
-yarn deploy
+npm ci
 ```
 
-## Learn More
+### Start Dev Server
 
-To learn more about thirdweb, Vite and React, take a look at the following resources:
+```bash
+npm run dev
+```
 
-- [thirdweb React Documentation](https://docs.thirdweb.com/react) - learn about our React SDK.
-- [thirdweb JavaScript Documentation](https://docs.thirdweb.com/react) - learn about our JavaScript/TypeScript SDK.
-- [thirdweb Portal](https://docs.thirdweb.com/react) - check our guides and development resources.
-- [Vite Documentation](https://vitejs.dev/guide/) - learn about Vite features.
-- [React documentation](https://reactjs.org/) - learn React.
-- [Templates](https://thirdweb.com/templates)
+Open:
 
-You can check out [the thirdweb GitHub organization](https://github.com/thirdweb-dev) - your feedback and contributions are welcome!
+```text
+http://localhost:5173
+```
 
-## Join our Discord!
+If `5173` is occupied:
 
-For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
+```bash
+npm run dev -- --port 5174
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Current Direction
+
+- Wallet-connect UI and wallet-provider runtime wiring are removed from active website routes.
+- Header `Products` menu is restored with:
+  - `STANDR DEX` -> `https://standr.eosifinance.org` (opens new tab)
+  - `Buy a Funded Account (Coming soon)`
+  - `DeFAI Suite (Coming soon)`
+- DeFAI coming-soon content section is added to the homepage.
+- Copy has been revised toward launch-stage credibility (no fake payout/testimonial/event claims).
+- Brownish-orange premium accent has been integrated into the global token system.
+
+## Redesign Phase Status
+
+### Completed
+
+- Phase 1: Premium design foundation (tokens, shared primitives, base styles)
+- Phase 2: Landing redesign pass (hero, feature rhythm, footer structure, premium visual language)
+- Product messaging updates for AI + Web3 prop-firm presale positioning
+
+### Updated / Reduced Scope
+
+- Previous wallet rewire phase is no longer needed.
+- Remaining work will focus on:
+  - Refining copy hierarchy and section pacing across landing pages
+  - Harmonizing any remaining internal pages that stay public
+  - Final responsive polish and cleanup of legacy styles/components
+
+## Troubleshooting
+
+- If the page appears blank, check browser console and terminal for Vite errors.
+- If dependencies are stale:
+
+```bash
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
+npm install
+```

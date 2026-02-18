@@ -1,0 +1,75 @@
+export const SocialTradingModuleAbi = [
+  {
+    inputs: [{ name: "isPublic", type: "bool" }],
+    name: "registerAsTrader",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { name: "name", type: "string" },
+      { name: "description", type: "string" },
+      { name: "strategyType", type: "uint8" },
+      { name: "strategyData", type: "bytes" },
+    ],
+    name: "createStrategy",
+    outputs: [{ name: "strategyId", type: "bytes32" }],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { name: "trader", type: "address" },
+      { name: "allocationBps", type: "uint256" },
+      { name: "maxAllocation", type: "uint256" },
+      { name: "autoExecute", type: "bool" },
+    ],
+    name: "followTrader",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { name: "originalTradeId", type: "bytes32" },
+      { name: "trader", type: "address" },
+      { name: "follower", type: "address" },
+    ],
+    name: "copyTrade",
+    outputs: [{ name: "copiedTradeId", type: "bytes32" }],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ name: "trader", type: "address" }],
+    name: "getTraderProfile",
+    outputs: [
+      {
+        components: [
+          { name: "trader", type: "address" },
+          { name: "totalTrades", type: "uint256" },
+          { name: "winningTrades", type: "uint256" },
+          { name: "totalVolume", type: "uint256" },
+          { name: "totalPnL", type: "int256" },
+          { name: "followers", type: "uint256" },
+          { name: "performanceScore", type: "uint256" },
+          { name: "winRate", type: "uint256" },
+          { name: "isPublic", type: "bool" },
+          { name: "createdAt", type: "uint256" },
+        ],
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ name: "trader", type: "address" }],
+    name: "getFollowers",
+    outputs: [{ name: "", type: "address[]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+] as const;

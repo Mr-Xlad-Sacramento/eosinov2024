@@ -1,0 +1,75 @@
+export const StandRCoreAbi = [
+  {
+    type: "function",
+    name: "pause",
+    inputs: [],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "unpause",
+    inputs: [],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "freeze",
+    inputs: [],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "getLimitOrderQueue",
+    inputs: [],
+    outputs: [{ name: "", type: "bytes32[]", internalType: "bytes32[]" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getBatchOrderIds",
+    inputs: [{ name: "batchId", type: "uint256", internalType: "uint256" }],
+    outputs: [{ name: "", type: "bytes32[]", internalType: "bytes32[]" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getBestYieldSource",
+    inputs: [{ name: "token", type: "address", internalType: "address" }],
+    outputs: [
+      { name: "sourceKey", type: "bytes32", internalType: "bytes32" },
+      { name: "adapter", type: "address", internalType: "address" },
+      { name: "apy", type: "uint256", internalType: "uint256" },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getTokenMarket",
+    inputs: [{ name: "token", type: "address", internalType: "address" }],
+    outputs: [
+      {
+        name: "",
+        type: "tuple",
+        internalType: "struct IMorphoBlue.MarketParams",
+        components: [
+          { name: "loanToken", type: "address", internalType: "address" },
+          { name: "collateralToken", type: "address", internalType: "address" },
+          { name: "oracle", type: "address", internalType: "address" },
+          { name: "irm", type: "address", internalType: "address" },
+          { name: "lltv", type: "uint256", internalType: "uint256" },
+        ],
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "owner",
+    inputs: [],
+    outputs: [{ name: "", type: "address", internalType: "address" }],
+    stateMutability: "view",
+  },
+] as const;

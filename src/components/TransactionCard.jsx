@@ -1,11 +1,6 @@
 import React from 'react';
 
-import { tagType, thirdweb } from '../assets';
-import { daysLeft } from '../utils';
-
 const TransactionCard = ({ owner, traderName, minProfit, minCapital, commission, amountCollected, image, handleClick }) => {
-  // const remainingDays = daysLeft(commission);
-  
   return (
     <div className="flex flex-col sm:flex-row sm:w-[990px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer items-center py-3 px-10 space-x-12 shadow-xl shadow-neutral-800" onClick={handleClick}>
 

@@ -1,113 +1,75 @@
-import { motion } from 'framer-motion';
-import React from 'react';
+import { motion } from "framer-motion";
+import React from "react";
+import { PremiumCard, SectionShell } from "../components";
 
-
-const FeatureCard = ({ icon, title, description, dexplatform, numberofdays, image }) => {
-  return (
-    <div className="feature-card-single">
-      <div className="feature-card">
-        <img loading="lazy" src={icon} alt="" className="feature-card-icon w-[50px] h-[45px] rounded-xl" />
-{/* 
-        <img
-          loading="lazy"
-          src={icon}
-          alt=""
-          className="feature-card-icon w-[50px] h-[45px]"
-        /> */}
-
-
-
-        <div className="feature-card-body">
-          <p className="text-large font-weight-500">{title}</p>
-          <p className=" " style={{
-            marginTop: '10px', marginBottom: '0px',
-          }}>{description}</p>
-          <p className="text-small feature-card-sub-text" style={{
-            marginTop: '2px',
-          }}>{dexplatform}</p>
-          <p className="text-small feature-card-sub-text">{numberofdays}</p>
-        </div>
-        <img src={image} loading="lazy" className="feature-gradient" alt="" />
-      </div>
-    </div>
-  );
-};
+const featureCards = [
+  {
+    icon: "/assets/6726ca0f328abbff95ca0511/nightRaider.jpg",
+    title: "AI-assisted trader intelligence",
+    description:
+      "Strategy discovery and signal evaluation are designed to support disciplined prop-firm style decision-making.",
+    status: "Status: Building",
+  },
+  {
+    icon: "/assets/6726ca0f328abbff95ca0511/WavekochPRO.jpg",
+    title: "Decentralized execution rails",
+    description:
+      "Execution paths are being engineered for transparency, non-custodial control, and measurable performance controls.",
+    status: "Status: In architecture",
+  },
+  {
+    icon: "/assets/6726ca0f328abbff95ca0511/danku_zone.jpg",
+    title: "Risk-governed copy framework",
+    description:
+      "Copy allocation logic will focus on guardrails first, helping users align strategy selection with defined risk appetite.",
+    status: "Status: Coming soon",
+  },
+  {
+    icon: "/assets/6726ca0f328abbff95ca0511/Matrix_FusionPro1.jpg",
+    title: "Prop-firm growth infrastructure",
+    description:
+      "EOSI Finance is building a platform where AI, Web3, and professional trading workflows can scale together over time.",
+    status: "Status: In development",
+  },
+];
 
 const FeatureSection = () => {
   return (
-    <section className="feature-section">
-
+    <SectionShell className="feature-section">
       <div className="container">
-
-
         <div className="feature-section-heading">
           <motion.div
-
             className="heading-two"
-            initial={{ opacity: 0, y: 30 }} // Initial state: invisible, slightly below
-            animate={{ opacity: 1, y: 0 }} // Final state: fully visible, at its original position
-            transition={{ duration: 1, ease: 'easeOut', delay: 0.4 }} // Smooth transition with slight delay
-            viewport={{ once: true }} // Trigger animation only once when it comes into view
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
           >
-            <h1 className="heading-two">Revolutionize proprietary trading</h1>
+            <h1 className="heading-two">Built for the first AI-powered Web3 prop firm era</h1>
           </motion.div>
-
         </div>
 
-
         <motion.div
-
-          className=""
-          initial={{ opacity: 0, y: 30 }} // Initial state: invisible, slightly below
-          animate={{ opacity: 1, y: 0 }} // Final state: fully visible, at its original position
-          transition={{ duration: 1, ease: 'easeOut', delay: 2 }} // Smooth transition with slight delay
-          viewport={{ once: true }} // Trigger animation only once when it comes into view
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
         >
-          <div className="feature-card-stack">
-            {/* First Feature Card */}
-            <FeatureCard
-              icon="/assets/6726ca0f328abbff95ca0511/nightRaider.jpg"
-              title="NightRaiderPRO TRADER"
-              description="Last month profit = 123.24%"
-              dexplatform="Platform = DEX Platforms"
-              numberofdays="Number of Days= 30 days"
-              image="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca0667_Light.png"
-            />
-
-            {/* Second Feature Card */}
-            <FeatureCard
-              icon="/assets/6726ca0f328abbff95ca0511/WavekochPRO.jpg"
-              title="WavekochPRO TRADER"
-              description="Last month profit = 48.87%"
-              dexplatform="Platform = DEX Platforms"
-              numberofdays="Number of Days= 35 days"
-              image="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca0667_Light.png"
-            />
-
-            {/* Third Feature Card */}
-            <FeatureCard
-              icon="/assets/6726ca0f328abbff95ca0511/danku_zone.jpg"
-              title="danku_zone PRO TRADER"
-              description="Last month profit = 85.03%"
-              dexplatform="Platform = DEX Platforms"
-              numberofdays="Number of Days= 27 days"
-              image="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca0667_Light.png"
-            />
-
-            {/* Fourth Feature Card */}
-            <FeatureCard
-              icon="/assets/6726ca0f328abbff95ca0511/Matrix_FusionPro1.jpg"
-              title="Matrix_FusionPro Trader"
-              description="Last month profit = 55%"
-              dexplatform="Platform = DEX Platforms"
-              numberofdays="Number of Days= 45 days"
-              image="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca0667_Light.png"
-            />
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {featureCards.map((card) => (
+              <PremiumCard key={card.title} className="p-5 md:p-6" tone="surface-1">
+                <div className="mb-4 flex items-center gap-3">
+                  <img loading="lazy" src={card.icon} alt="" className="h-[50px] w-[50px] rounded-xl object-cover" />
+                  <p className="text-sm text-muted">{card.status}</p>
+                </div>
+                <div>
+                  <p className="text-lg font-medium text-primary">{card.title}</p>
+                  <p className="mt-2 text-sm text-secondary">{card.description}</p>
+                </div>
+              </PremiumCard>
+            ))}
           </div>
         </motion.div>
       </div>
-
-    </section>
+    </SectionShell>
   );
 };
 

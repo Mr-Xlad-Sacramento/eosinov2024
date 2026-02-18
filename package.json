@@ -9,7 +9,7 @@
     "deploy": "yarn build && npx thirdweb@latest upload dist"
   },
   "dependencies": {
-    "@thirdweb-dev/react": "^4",
+    "@thirdweb-dev/react": "^3.10.3",
     "@thirdweb-dev/sdk": "^4",
     "emailjs-com": "^3.2.0",
     "ethers": "^5",

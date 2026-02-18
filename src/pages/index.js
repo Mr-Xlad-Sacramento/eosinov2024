@@ -7,4 +7,3 @@ export { default as Home2 } from './Home2';
 export { default as ProfileDetails } from './ProfileDetails';
 export { default as Contact } from './Contact';
 export { default as Front } from './Front';
-export { default as Dashboardd } from './Dashboardd';

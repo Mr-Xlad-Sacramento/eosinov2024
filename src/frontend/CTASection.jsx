@@ -15,9 +15,9 @@ const CTASection = () => {
                 </div>
               </div>
               <div className="row-gap-16">
-                <h2 className="heading-two">Start Copytrading Today</h2>
+                <h2 className="heading-two">Be early to the EOSI Finance buildout</h2>
                 <p className="text-medium text-color">
-                With our Gateway to Crypto Trading and Funding, we Revolutionize proprietary trading
+                Join the presale-stage community and track how our AI powered Web3 prop-firm infrastructure is rolling out.
                 </p>
               </div>
             </div>

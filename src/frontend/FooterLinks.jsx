@@ -1,136 +1,75 @@
 import React from 'react';
 
 const FooterLinks = () => {
+  const appOrigin = window.location.origin;
+
   return (
-    <div className="footer-list-block">
-      <div className="footer-list-single">
-        <div className="row-gap-40">
-          <p className="text-small footer-heading-one">EOSI FINANCE</p>
-          <div className="row-gap-13">
-            {/* Anchor links for internal navigation */}
-            <a href="#home" className="link-block w-inline-block">
-              <p className="text-small">Home</p>
-            </a>
-           
-            {/* <a href="#connectwallets" className="link-block w-inline-block">
-              <p className="text-small">Copy trading</p>
-            </a> */}
-
-            <a href="#" className="link-block w-inline-block">
-              <p className="text-small">
-                Copy Trading
-                <span
-                  style={{
-                    color: 'green',
-                    fontSize: '10px',
-                    fontWeight: 'bolder',
-                  }}
-                >
-                  (coming soon)
-                </span>
-              </p>
-            </a>
-
-
-            <a href="#team" className="link-block w-inline-block">
-              <p className="text-small">Team</p>
-            </a>
-            <a href="mailto:info@eosifinance.org" className="link-block w-inline-block">
-              <p className="text-small">Contact</p>
-            </a>
-            {/* External link */}
-            <a href="https://medium.com/@eosifinance_ai" className="link-block w-inline-block">
-              <p className="text-small">Blog</p>
-            </a>
-          </div>
+    <div className="grid flex-1 grid-cols-1 gap-10 text-secondary md:grid-cols-3">
+      <div className="space-y-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e7edf9]">EOSI FINANCE</p>
+        <div className="space-y-3">
+          <a href="#home" className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white">
+            Home
+          </a>
+          <a href="#team" className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white">
+            Team
+          </a>
+          <a href="mailto:info@eosifinance.org" className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white">
+            Contact
+          </a>
+          <a
+            href="https://medium.com/@eosifinance_ai"
+            className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Blog
+          </a>
         </div>
       </div>
 
-      {/* <div className="footer-list-single footer-top-part-two">
-        <div className="row-gap-40">
-          <p className="text-small footer-heading-one">PRODUCTS</p>
-          <div className="row-gap-13">
-            
-            <a href="#connectwallets" className="link-block w-inline-block">
-              <p className="text-small">Crypto copy trading</p>
-            </a>
-            <a href="#team" className="link-block w-inline-block">
-              <p className="text-small">Team</p>
-            </a>
-            <a href="#get-funded" className="link-block w-inline-block">
-              <p className="text-small">
-                Get Funded
-                <span
-                  style={{
-                    color: 'green',
-                    fontSize: '10px',
-                    fontWeight: 'bolder',
-                  }}
-                >
-                  (coming soon)
-                </span>
-              </p>
-            </a>
-          </div>
+      <div className="space-y-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e7edf9]">PRODUCTS</p>
+        <div className="space-y-3">
+          <a
+            href={`${appOrigin}/standr`}
+            className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            STANDR DEX
+          </a>
+          <a
+            href={`${appOrigin}/prop-firm`}
+            className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buy a Funded Account
+          </a>
         </div>
-      </div> */}
+      </div>
 
-      <div className="footer-list-single footer-top-part-two">
-        <div className="row-gap-40">
-          <p className="text-small footer-heading-one">RESOURCES</p>
-          <div className="row-gap-13">
-            {/* External links */}
-            <a
-              href="https://online.fliphtml5.com/limyj/fvvf"
-              className="link-block w-inline-block"
-              target="_blank" // Opens the link in a new tab
-              rel="noopener noreferrer" // Security feature to prevent potential vulnerabilities
-            >
-              <p className="text-small">White Paper</p>
-            </a>
+      <div className="space-y-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e7edf9]">RESOURCES</p>
+        <div className="space-y-3">
+          <a
+            href="https://eosi-finance-1.gitbook.io/eosi-finance-documentations/"
+            className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            White Paper
+          </a>
 
-            <a
-              href="https://online.fliphtml5.com/limyj/fvvf/#p=10"
-              className="link-block w-inline-block"
-              target="_blank" // Opens the link in a new tab
-              rel="noopener noreferrer" // Security feature to prevent potential vulnerabilities
-            >
-              <p className="text-small">Tokenomics</p>
-            </a>
-
-            <a
-              href="#roadmap"
-              className="link-block w-inline-block"
-              target="_blank" // Opens the link in a new tab
-              rel="noopener noreferrer" // Security feature to prevent potential vulnerabilities
-            >
-              <p className="text-small">Roadmap</p>
-            </a>
-            <a href="#get-funded" className="link-block w-inline-block">
-              <p className="text-small">
-                Get Funded
-
-                <span
-                  style={{
-                    color: 'green',
-                    fontSize: '10px',
-                    fontWeight: 'bolder',
-                  }}
-                >
-                  (coming soon)
-                </span>
-               
-              </p>
-            </a>
-             <a
-              href="https://t.me/StandR_AI_BOT"
-              className="link-block w-inline-block"
-              target="_blank" // Opens the link in a new tab
-              rel="noopener noreferrer" // Security feature to prevent potential vulnerabilities
-            >
-              <p className="text-small">StandR AI Bot</p>
-            </a>
-          </div>
+          <a
+            href="https://eosi-finance-1.gitbook.io/eosi-finance-documentations/eosi-finance/9-tokenomics-and-economic-design"
+            className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Tokenomics
+          </a>
         </div>
       </div>
     </div>

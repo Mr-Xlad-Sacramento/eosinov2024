@@ -1,11 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import MenuItem from "../components/MenuItem";
-import { Loader, Loading2 } from '../components';
-import { AiOutlineHome } from 'react-icons/ai';
-import { VscThreeBars } from 'react-icons/vsc';
+import React from "react";
 
 import {
   Banner,
@@ -14,6 +7,7 @@ import {
   Brand,
   FeatureSection,
   FeatureTwoSection,
+  DefaiSection,
   ContentSection,
   ContentTwoSection,
   ContentTwoSectionCopy,
@@ -30,38 +24,6 @@ import {
 } from '../frontend';
 
 const Front = () => {
-  const navigate = useNavigate();
-  const address = useAddress();
-  const [isWalletConnected, setIsWalletConnected] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsWalletConnected(!!address);
-    if (isWalletConnected) {
-      setIsLoading(true);
-      const timer = setTimeout(() => {
-        navigate("/dashboard");
-      }, 7000);
-      return () => clearTimeout(timer);
-    }
-  }, [address, isWalletConnected, navigate]);
-
-  if (isLoading) {
-    return (
-      <div>
-        <Loading2 />
-      </div>
-    );
-  }
-
-  if (isWalletConnected) {
-    return null;
-  }
-
-  const handleLinkClick = (url) => {
-    window.open(url, '_blank');
-  };
-
   return (
     <div className="">
 
@@ -76,7 +38,7 @@ const Front = () => {
         <Hero />
 
         <div className="brand-title-block flex justify-center items-center mt-10 mb-10">
-          <div className="brand-title text-center">Pre-confirmed Listing & Partners</div>
+          <div className="brand-title text-center">Strategic conversations & ecosystem outreach</div>
         </div>
 
 
@@ -85,6 +47,7 @@ const Front = () => {
 
         <FeatureSection />
         <FeatureTwoSection />
+        <DefaiSection />
 
         <ContentSection />
         <ContentTwoSection />
