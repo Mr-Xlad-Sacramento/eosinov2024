@@ -1,86 +1,170 @@
-## EOSI Finance Frontend
+# EOSI Finance
 
-Premium presale-stage frontend for EOSI Finance, positioned as an AI-powered Web3 prop-firm platform.
+A DeFAI (Decentralised Finance + AI) platform consisting of a marketing site, two product waitlists, and an admin dashboard for subscriber management.
 
-## Run Locally (No Docker)
+**Live site:** [eosifinance.org](https://eosifinance.org)
 
-This repository currently contains the frontend app only. No backend service is required to run the current website.
+---
 
-### Prerequisites
+## Features
 
-- Node.js 22.x (recommended)
-- npm 10+
+- **Marketing site** — Single-page React application with newsletter signup, product showcases, and consent-gated entry
+- **STANDR DEX** — Upcoming DeFAI execution layer with AI-powered market analysis and intent-based trading. Waitlist open.
+- **Web3-native Prop Firm** — Funded trader accounts with structured evaluation. Waitlist open.
+- **Admin dashboard** — Protected at `/admin`. Displays all waitlist and newsletter subscribers; exports CSV per list. Rate-limited, timing-safe Bearer token authentication.
 
-### Install
+---
+
+## Tech Stack
+
+### Frontend
+
+| Package | Version | Purpose |
+|:--------|:--------|:--------|
+| React | 18.x | UI framework |
+| Vite | 3.x | Build tool and dev server |
+| Tailwind CSS | 3.x | Utility-first styling |
+| framer-motion | 11.x | Animations and transitions |
+| thirdweb SDK | 4.x / react 3.x | Wallet connection and smart contract interaction |
+| React Router | v6 | Client-side routing |
+| react-icons | 5.x | Icon library |
+
+### Backend
+
+| Package | Version | Purpose |
+|:--------|:--------|:--------|
+| Node.js | 22.x | Runtime |
+| Express | 5.x | HTTP framework |
+| PostgreSQL (`pg`) | 8.x | Primary data store |
+| Redis (`ioredis`) | 5.x | Rate-limit store |
+| helmet | 8.x | Security headers |
+| express-rate-limit | 8.x | Request rate limiting |
+| rate-limit-redis | 4.x | Redis-backed rate limit store |
+| nodemailer | 8.x | Email notifications on signup |
+| mailchecker | 6.x | Disposable email address rejection |
+
+### Infrastructure
+
+| Tool | Purpose |
+|:-----|:--------|
+| Docker Compose | PostgreSQL 16 + Redis 7 local and production containers |
+| Netlify | Frontend hosting with automatic deploys on git push |
+| pm2 | Backend process management on VPS |
+
+---
+
+## Project Structure
+
+```
+eosinov2024/
+├── src/
+│   ├── frontend/          # Page section components (Hero, Header, Footer, etc.)
+│   ├── pages/             # Route-level pages (AdminPage, StandrPage, PropFirmPage)
+│   ├── components/        # Shared components (ConsentModal, TopAnnouncementBar)
+│   ├── context/           # thirdweb contract context provider
+│   ├── constants/         # Application-wide constants
+│   ├── assets/            # Static asset exports
+│   ├── styles/            # Global and page-specific CSS
+│   └── utils/             # Utility functions
+├── server/
+│   ├── index.js           # Express API server — all routes, auth, rate limiting
+│   ├── schema.sql         # PostgreSQL schema (applied automatically by Docker)
+│   ├── package.json       # Backend dependencies
+│   └── .env.example       # Environment variable template
+├── public/                # Static assets served by Vite
+├── docker-compose.yml     # PostgreSQL 16 + Redis 7 service definitions
+├── vite.config.js         # Vite build config with /api proxy to port 3001
+├── netlify.toml           # Netlify build settings and security headers
+├── tailwind.config.js     # Tailwind configuration
+└── package.json           # Frontend dependencies and scripts
+```
+
+---
+
+## Quick Start
+
+Full step-by-step instructions, environment variable reference, API docs, and troubleshooting are in [startup.md](./startup.md). The condensed version:
+
+**Prerequisites:** Node.js 22.x, npm 10+, Docker Desktop
 
 ```bash
-npm ci
+# 1. Configure environment
+cp server/.env.example server/.env
+# Edit server/.env — set ADMIN_TOKEN, POSTGRES_PASSWORD, REDIS_PASSWORD
+
+# 2. Start database and cache
+docker compose up -d
+
+# 3. Start backend (in one terminal)
+cd server && npm install && node index.js
+
+# 4. Start frontend (in a second terminal, from project root)
+npm install && npm run dev
 ```
 
-### Start Dev Server
+Open [http://localhost:5173](http://localhost:5173).
+
+---
+
+## Environment Variables
+
+The backend reads from `server/.env`. Three variables are required — the server will not start without them.
+
+| Variable | Required | Description |
+|:---------|:--------:|:------------|
+| `ADMIN_TOKEN` | Yes | Bearer token for admin endpoints. Minimum 16 characters. Generate: `node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"` |
+| `POSTGRES_PASSWORD` | Yes | PostgreSQL password. No default. |
+| `REDIS_PASSWORD` | Yes | Redis authentication password. No default. |
+
+All other variables (`SMTP_*`, `EMAIL_*`, `PORT`, `NODE_ENV`, `POSTGRES_*`, `REDIS_*`) are optional with sensible defaults. See [startup.md](./startup.md) for the full reference.
+
+---
+
+## Deployment
+
+### Frontend — Netlify
+
+Push to the `main` branch. Netlify picks up the build automatically using `netlify.toml`:
+
+- Build command: `npm run build`
+- Publish directory: `dist/`
+- Security headers (CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy) are set in `netlify.toml`
+
+### Backend — VPS
 
 ```bash
-npm run dev
+# On the server, inside the server/ directory
+NODE_ENV=production pm2 start index.js --name eosi-api
+pm2 save
+pm2 startup
 ```
 
-Open:
+Run behind a reverse proxy (nginx or Caddy) for TLS termination. Docker Compose manages PostgreSQL and Redis on the same host. In production, remove the host port mappings for both services — the API connects via Docker's internal network.
 
-```text
-http://localhost:5173
-```
+---
 
-If `5173` is occupied:
+## Security
 
-```bash
-npm run dev -- --port 5174
-```
+The backend applies defence-in-depth across several layers:
 
-### Build
+| Control | Implementation |
+|:--------|:--------------|
+| Security headers | `helmet` with explicit CSP, `frameguard: DENY`, `frame-ancestors: none`, `object-src: none` |
+| Clickjacking protection | `X-Frame-Options: DENY` (Helmet + Netlify headers) |
+| Rate limiting | 10 req / 15 min per IP on public routes; 20 req / 15 min on admin routes — Redis-backed |
+| Admin authentication | Timing-safe `crypto.timingSafeEqual` comparison with length normalisation |
+| SQL injection | All queries use parameterised statements (`$1`, `$2` placeholders) — no string concatenation |
+| Disposable email filtering | MailChecker rejects known temporary/disposable email providers |
+| Spam / bot mitigation | Honeypot `website` field on all form endpoints |
+| CORS | Restricted to `localhost:5173` (dev) and `https://eosifinance.org` (production) |
+| Body size | `express.json({ limit: '10kb' })` — prevents oversized payload attacks |
+| CSV injection | Export sanitises formula-triggering characters (`=`, `+`, `-`, `@`) at cell boundaries |
+| Secrets | `server/.env` is `.gitignore`d and has never been committed to version control |
 
-```bash
-npm run build
-```
+For the full vulnerability assessment — including findings, resolved issues, and the remediation checklist — see [audit.md](./audit.md).
 
-### Preview Production Build
+---
 
-```bash
-npm run preview
-```
+## License
 
-## Current Direction
-
-- Wallet-connect UI and wallet-provider runtime wiring are removed from active website routes.
-- Header `Products` menu is restored with:
-  - `STANDR DEX` -> `https://standr.eosifinance.org` (opens new tab)
-  - `Buy a Funded Account (Coming soon)`
-  - `DeFAI Suite (Coming soon)`
-- DeFAI coming-soon content section is added to the homepage.
-- Copy has been revised toward launch-stage credibility (no fake payout/testimonial/event claims).
-- Brownish-orange premium accent has been integrated into the global token system.
-
-## Redesign Phase Status
-
-### Completed
-
-- Phase 1: Premium design foundation (tokens, shared primitives, base styles)
-- Phase 2: Landing redesign pass (hero, feature rhythm, footer structure, premium visual language)
-- Product messaging updates for AI + Web3 prop-firm presale positioning
-
-### Updated / Reduced Scope
-
-- Previous wallet rewire phase is no longer needed.
-- Remaining work will focus on:
-  - Refining copy hierarchy and section pacing across landing pages
-  - Harmonizing any remaining internal pages that stay public
-  - Final responsive polish and cleanup of legacy styles/components
-
-## Troubleshooting
-
-- If the page appears blank, check browser console and terminal for Vite errors.
-- If dependencies are stale:
-
-```bash
-Remove-Item -Recurse -Force node_modules
-Remove-Item -Force package-lock.json
-npm install
-```
+MIT — see [LICENSE.md](./LICENSE.md).

@@ -5,10 +5,11 @@ import Front from './pages/Front';
 import StandrPage from './pages/StandrPage';
 import PropFirmPage from './pages/PropFirmPage';
 import ConsentModal from './components/ConsentModal';
+import AdminPage from './pages/AdminPage';
 
 const App = () => {
-  // Always show on page load (no remember)
-  const [showConsent, setShowConsent] = useState(false);
+  // Always show on every page load — strict consent gate
+  const [showConsent, setShowConsent] = useState(true);
 
   const handleAccept = () => {
     setShowConsent(false);
@@ -80,6 +81,7 @@ const App = () => {
           <Route path="/app" element={<Front />} />
           <Route path="/standr" element={<StandrPage />} />
           <Route path="/prop-firm" element={<PropFirmPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </div>
     </>

@@ -97,14 +97,6 @@ const ContentTwoImageBlock = () => {
         loading="lazy"
         srcSet="/assets/6726ca0f328abbff95ca0511/section7-right.png 500w, /assets/6726ca0f328abbff95ca0511/section7-right.png 800w, /assets/6726ca0f328abbff95ca0511/section7-right.png 1080w, /assets/6726ca0f328abbff95ca0511/section7-right.png 1496w"
       />
-      <img
-        src="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2.webp"
-        loading="lazy"
-        sizes="(max-width: 479px) 100vw, (max-width: 991px) 320px, (max-width: 1439px) 45vw, 555px"
-        srcSet="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2-p-500.webp 500w, /assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2-p-800.webp 800w, /assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2-p-1080.webp 1080w, /assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2-p-1600.webp 1600w, /assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2-p-2000.webp 2000w, /assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2.webp 2220w"
-        alt=""
-        className="noise"
-      />
     </motion.div>
   );
 };

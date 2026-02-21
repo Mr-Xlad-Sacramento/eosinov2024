@@ -4,28 +4,28 @@ import { PremiumCard, SectionShell } from "../components";
 
 const featureCards = [
   {
-    icon: "/assets/6726ca0f328abbff95ca0511/nightRaider.jpg",
+    icon: "/icons/ai-intel.svg",
     title: "AI-assisted trader intelligence",
     description:
       "Strategy discovery and signal evaluation are designed to support disciplined prop-firm style decision-making.",
     status: "Status: Building",
   },
   {
-    icon: "/assets/6726ca0f328abbff95ca0511/WavekochPRO.jpg",
+    icon: "/icons/defi-rails.svg",
     title: "Decentralized execution rails",
     description:
       "Execution paths are being engineered for transparency, non-custodial control, and measurable performance controls.",
     status: "Status: In architecture",
   },
   {
-    icon: "/assets/6726ca0f328abbff95ca0511/danku_zone.jpg",
+    icon: "/icons/risk-copy.svg",
     title: "Risk-governed copy framework",
     description:
       "Copy allocation logic will focus on guardrails first, helping users align strategy selection with defined risk appetite.",
     status: "Status: Coming soon",
   },
   {
-    icon: "/assets/6726ca0f328abbff95ca0511/Matrix_FusionPro1.jpg",
+    icon: "/icons/prop-growth.svg",
     title: "Prop-firm growth infrastructure",
     description:
       "EOSI Finance is building a platform where AI, Web3, and professional trading workflows can scale together over time.",

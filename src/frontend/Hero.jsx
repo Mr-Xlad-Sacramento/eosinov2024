@@ -105,14 +105,6 @@ const Hero = () => {
                 <div className="gradient-blush-orange"></div>
                 <div className="gradient-blush-blue"></div>
               </div>
-              <img
-                src="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2.webp"
-                loading="lazy"
-                sizes="385px"
-                srcSet="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2-p-500.webp 500w, /assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2-p-800.webp 800w, /assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2.webp 2220w"
-                alt=""
-                className="noise"
-              />
             </div>
           </div>
         </div>

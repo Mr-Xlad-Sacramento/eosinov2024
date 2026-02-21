@@ -4,8 +4,9 @@ import { BadgePill, PremiumButton, PremiumCard, SectionShell } from "../componen
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const StandrWaitlistSection = () => {
-  const [form, setForm] = useState({ email: "", twitter: "" });
+  const [form, setForm] = useState({ email: "", twitter: "", website: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   const onChange = (event) => {
@@ -13,15 +14,31 @@ const StandrWaitlistSection = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     if (!emailRegex.test(form.email.trim())) {
       setError("Please enter a valid email address.");
       return;
     }
-
     setError("");
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/waitlist/standr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email.trim(), twitter: form.twitter.trim(), website: form.website }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -64,12 +81,22 @@ const StandrWaitlistSection = () => {
                 className="mt-2 w-full rounded-lg border border-white/10 bg-[#0f1422] px-3 py-2 text-sm text-primary outline-none"
               />
 
+              <input
+                type="text"
+                name="website"
+                value={form.website || ""}
+                onChange={onChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}
+              />
               {error ? <p className="mt-3 text-xs text-[#ff8f8f]">{error}</p> : null}
               {submitted ? <p className="mt-3 text-xs text-[#8be39f]">You're on the STANDR waitlist. We'll keep you updated.</p> : null}
 
               <div className="mt-5">
-                <PremiumButton as="button" type="submit" variant="brand" size="sm" className="w-full">
-                  Join the waitlist
+                <PremiumButton as="button" type="submit" variant="brand" size="sm" className="w-full" disabled={submitting || submitted}>
+                  {submitting ? "Submitting…" : submitted ? "You're on the list!" : "Join the waitlist"}
                 </PremiumButton>
               </div>
             </form>

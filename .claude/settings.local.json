@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir)",
+      "mcp__plugin_oh-my-claudecode_x__ask_codex",
+      "Bash(echo:*)",
+      "Bash(node:*)",
+      "Bash(for:*)",
+      "Bash(do)",
+      "Bash(done)",
+      "Bash(__NEW_LINE_d625a9e957ea309b__ echo \"=== TASK 1a: Header icon ===\")",
+      "Bash(__NEW_LINE_d625a9e957ea309b__ echo \"=== TASK 1c: Luxury button ===\")",
+      "Bash(__NEW_LINE_d625a9e957ea309b__ echo \"=== TASK 4a: CTA animations ===\")",
+      "Bash(__NEW_LINE_d625a9e957ea309b__ echo \"=== TASK 5b: Footer titles ===\")",
+      "Bash(__NEW_LINE_1426c9e3d6487201__ echo \"=== TASK 6a: standr-icon ===\")",
+      "Bash(__NEW_LINE_1426c9e3d6487201__ echo \"=== TASK 6d: Home link ===\")",
+      "Bash(npm install)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm audit:*)",
+      "mcp__plugin_oh-my-claudecode_g__ask_gemini"
+    ]
+  }
+}

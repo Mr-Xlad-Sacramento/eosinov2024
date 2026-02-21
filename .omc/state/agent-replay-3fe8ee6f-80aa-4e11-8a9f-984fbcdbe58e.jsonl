@@ -1,0 +1,7 @@
+{"t":0,"agent":"a181542","agent_type":"security-reviewer","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a181542","agent_type":"security-reviewer","event":"agent_stop","success":true,"duration_ms":167182}
+{"t":0,"agent":"a2acdd0","agent_type":"security-reviewer","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a2acdd0","agent_type":"security-reviewer","event":"agent_stop","success":true,"duration_ms":297955}
+{"t":0,"agent":"a326221","agent_type":"writer","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a326221","agent_type":"writer","event":"agent_stop","success":true,"duration_ms":203869}
+{"t":0,"agent":"a52f25c","agent_type":"unknown","event":"agent_stop","success":true}

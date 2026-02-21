@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import CTAButton from './CTAButton';
 import CTABackground from './CTABackground';
 
@@ -25,21 +26,25 @@ const CTASection = () => {
           </div>
           <CTABackground />
           <div className="cta-absolute-shape-top">
-            <img
+            <motion.img
               src="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05ce_3d-render-of-dark-gray-metal-loop-cylinder%201.png"
               loading="lazy"
-              data-w-id="d6a5aa84-2800-39ba-728f-a3235c9e4315"
               alt="CTA Shape Top"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 12, ease: 'linear', repeat: Infinity }}
+              style={{ willChange: 'transform', display: 'block' }}
             />
           </div>
           <div className="cta-absolute-shape-bottom">
-            <img
+            <motion.img
               src="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05cd_black-matte-cube-with-circular-hole%201.png"
               loading="lazy"
-              data-w-id="d6a5aa84-2800-39ba-728f-a3235c9e4317"
               sizes="(max-width: 479px) 100vw, 175.5px"
               alt="CTA Shape Bottom"
               srcSet="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05cd_black-matte-cube-with-circular-hole%25201-p-500.png 500w, /assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05cd_black-matte-cube-with-circular-hole%201.png 636w"
+              animate={{ y: [0, -18, -10, 0] }}
+              transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity, repeatDelay: 0.2 }}
+              style={{ willChange: 'transform', display: 'block' }}
             />
           </div>
         </div>

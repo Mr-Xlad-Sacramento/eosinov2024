@@ -14,7 +14,7 @@ const TopAnnouncementBar = ({
         <p className="top-announcement__title">{title}</p>
         {subtitle ? <p className="top-announcement__subtitle">{subtitle}</p> : null}
       </div>
-      <PremiumButton as="span" variant="brand" size="sm">
+      <PremiumButton as="span" variant="brand" size="sm" className="btn-luxury-shimmer">
         {ctaLabel}
       </PremiumButton>
     </div>

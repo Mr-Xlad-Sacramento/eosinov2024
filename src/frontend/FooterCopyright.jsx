@@ -6,10 +6,10 @@ const FooterCopyright = () => {
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div className="flex items-center gap-3">
           <img
-            src="/assets/6726ca0f328abbff95ca0511/672f16cbf73995494b87055d_Secury.png"
+            src="/favicon.ico.jpg"
             loading="lazy"
             alt="EOSI Finance logo"
-            className="h-8 w-auto"
+            className="h-8 w-8 rounded-full object-cover ring-1 ring-amber-600/30"
           />
           <p className="text-xs text-muted">&copy; 2026 EOSI Finance. All rights reserved.</p>
         </div>

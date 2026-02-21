@@ -1,0 +1,245 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1771679245935,
+  "projectRoot": "C:\\Users\\danke\\OneDrive\\Desktop\\chiji\\ef site\\eosinov2024",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "react",
+        "version": "18.2",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "18.2",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "3",
+        "category": "build"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview",
+      "deploy": "yarn build && npx thirdweb@latest upload dist"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 2,
+      "lastAccessed": 1771679245881,
+      "keyFiles": [
+        "favicon.ico.jpg",
+        "index.html"
+      ]
+    },
+    "frontend-pages-export": {
+      "path": "frontend-pages-export",
+      "purpose": null,
+      "fileCount": 11,
+      "lastAccessed": 1771679245894,
+      "keyFiles": [
+        "eslint.config.mjs",
+        "INTEGRATION.md",
+        "next-env.d.ts",
+        "next.config.ts",
+        "package-lock.json"
+      ]
+    },
+    "images": {
+      "path": "images",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1771679245895,
+      "keyFiles": [
+        "background.png"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 2,
+      "lastAccessed": 1771679245896,
+      "keyFiles": [
+        "favicon.ico.jpg",
+        "standr-icon.svg"
+      ]
+    },
+    "server": {
+      "path": "server",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1771679245896,
+      "keyFiles": [
+        "index.js",
+        "package-lock.json",
+        "package.json",
+        "schema.sql"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 5,
+      "lastAccessed": 1771679245896,
+      "keyFiles": [
+        "App.jsx",
+        "favicon.svg",
+        "index.css",
+        "logo.svg",
+        "main.jsx"
+      ]
+    },
+    "dist\\assets": {
+      "path": "dist\\assets",
+      "purpose": "Static assets",
+      "fileCount": 17,
+      "lastAccessed": 1771679245899,
+      "keyFiles": [
+        "create-campaign.713a46ac.svg",
+        "dashboard.9abe5cff.svg",
+        "eosi.07a21a5f.png"
+      ]
+    },
+    "frontend-pages-export\\public": {
+      "path": "frontend-pages-export\\public",
+      "purpose": "Public files",
+      "fileCount": 6,
+      "lastAccessed": 1771679245900,
+      "keyFiles": [
+        "file.svg",
+        "globe.svg",
+        "next.svg"
+      ]
+    },
+    "public\\assets": {
+      "path": "public\\assets",
+      "purpose": "Static assets",
+      "fileCount": 0,
+      "lastAccessed": 1771679245905,
+      "keyFiles": []
+    },
+    "server\\node_modules": {
+      "path": "server\\node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 1,
+      "lastAccessed": 1771679245910,
+      "keyFiles": []
+    },
+    "src\\assets": {
+      "path": "src\\assets",
+      "purpose": "Static assets",
+      "fileCount": 19,
+      "lastAccessed": 1771679245911,
+      "keyFiles": [
+        "brand.css",
+        "content.css",
+        "content2.css"
+      ]
+    },
+    "src\\components": {
+      "path": "src\\components",
+      "purpose": "UI components",
+      "fileCount": 22,
+      "lastAccessed": 1771679245912,
+      "keyFiles": [
+        "BadgePill.jsx",
+        "ConsentModal.jsx",
+        "CountBox.jsx"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "server\\index.js",
+      "accessCount": 8,
+      "lastAccessed": 1771679817533,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 2,
+      "lastAccessed": 1771679811244,
+      "type": "file"
+    },
+    {
+      "path": "server\\config.js",
+      "accessCount": 2,
+      "lastAccessed": 1771680163261,
+      "type": "file"
+    },
+    {
+      "path": "vite.config.js",
+      "accessCount": 1,
+      "lastAccessed": 1771679355363,
+      "type": "file"
+    },
+    {
+      "path": "server\\.env.example",
+      "accessCount": 1,
+      "lastAccessed": 1771679370094,
+      "type": "file"
+    },
+    {
+      "path": "server\\.env",
+      "accessCount": 1,
+      "lastAccessed": 1771679370153,
+      "type": "file"
+    },
+    {
+      "path": "server\\schema.sql",
+      "accessCount": 1,
+      "lastAccessed": 1771679374853,
+      "type": "file"
+    },
+    {
+      "path": "server\\package.json",
+      "accessCount": 1,
+      "lastAccessed": 1771679387089,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

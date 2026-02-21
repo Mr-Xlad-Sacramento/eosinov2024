@@ -6,7 +6,7 @@ const FooterLinks = () => {
   return (
     <div className="grid flex-1 grid-cols-1 gap-10 text-secondary md:grid-cols-3">
       <div className="space-y-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e7edf9]">EOSI FINANCE</p>
+        <p className="text-xs font-bold uppercase tracking-[0.18em] bg-gradient-to-r from-[#f2b569] to-[#e8965c] bg-clip-text text-transparent border-b border-[#f2b569]/30 pb-2">EOSI FINANCE</p>
         <div className="space-y-3">
           <a href="#home" className="block text-base text-[#d8e0f2] transition-colors duration-180 hover:text-white">
             Home
@@ -29,7 +29,7 @@ const FooterLinks = () => {
       </div>
 
       <div className="space-y-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e7edf9]">PRODUCTS</p>
+        <p className="text-xs font-bold uppercase tracking-[0.18em] bg-gradient-to-r from-[#f2b569] to-[#e8965c] bg-clip-text text-transparent border-b border-[#f2b569]/30 pb-2">PRODUCTS</p>
         <div className="space-y-3">
           <a
             href={`${appOrigin}/standr`}
@@ -51,7 +51,7 @@ const FooterLinks = () => {
       </div>
 
       <div className="space-y-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#e7edf9]">RESOURCES</p>
+        <p className="text-xs font-bold uppercase tracking-[0.18em] bg-gradient-to-r from-[#f2b569] to-[#e8965c] bg-clip-text text-transparent border-b border-[#f2b569]/30 pb-2">RESOURCES</p>
         <div className="space-y-3">
           <a
             href="https://eosi-finance-1.gitbook.io/eosi-finance-documentations/"

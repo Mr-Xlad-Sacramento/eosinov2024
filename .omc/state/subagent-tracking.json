@@ -1,0 +1,35 @@
+{
+  "agents": [
+    {
+      "agent_id": "a181542",
+      "agent_type": "oh-my-claudecode:security-reviewer",
+      "started_at": "2026-02-20T16:59:39.937Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-02-20T17:02:27.119Z",
+      "duration_ms": 167182
+    },
+    {
+      "agent_id": "a2acdd0",
+      "agent_type": "oh-my-claudecode:security-reviewer",
+      "started_at": "2026-02-20T17:16:15.690Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-02-20T17:21:13.645Z",
+      "duration_ms": 297955
+    },
+    {
+      "agent_id": "a326221",
+      "agent_type": "oh-my-claudecode:writer",
+      "started_at": "2026-02-20T18:04:26.488Z",
+      "parent_mode": "none",
+      "status": "completed",
+      "completed_at": "2026-02-20T18:07:50.357Z",
+      "duration_ms": 203869
+    }
+  ],
+  "total_spawned": 3,
+  "total_completed": 3,
+  "total_failed": 0,
+  "last_updated": "2026-02-20T18:09:13.093Z"
+}

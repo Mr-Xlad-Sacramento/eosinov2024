@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import "../styles/standr-page.css";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const navItems = [
-  { label: "Home", href: "#home" },
+  { label: "Home", href: "/" },
   { label: "Why STANDR?", href: "#why-standr" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Benefits", href: "#benefits" },
@@ -86,22 +86,69 @@ const faqs = [
   },
 ];
 
+/* Reusable disabled button with hover tooltip */
+const ComingSoonButton = ({ label, className }) => {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <div
+      className="relative flex-1"
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+    >
+      <div
+        className={`select-none cursor-not-allowed opacity-60 ${className}`}
+        aria-disabled="true"
+      >
+        {label}
+      </div>
+
+      {visible && (
+        <div
+          className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 z-50 whitespace-nowrap rounded-xl border border-[#f2b569]/40 bg-[#0e1528]/95 px-4 py-2 text-xs font-semibold text-[#f6d9bf] shadow-[0_8px_24px_rgba(0,0,0,0.5)] backdrop-blur-sm"
+          style={{ animation: 'none' }}
+        >
+          🔒 Coming soon — <a href="#standr-waitlist" className="underline text-[#f2b569] pointer-events-auto">join the waitlist</a>
+          <span className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-[#f2b569]/40" />
+        </div>
+      )}
+    </div>
+  );
+};
+
 const StandrPage = () => {
-  const [form, setForm] = useState({ email: "", twitter: "" });
+  const [form, setForm] = useState({ email: "", twitter: "", website: "" });
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  const appOrigin = useMemo(() => window.location.origin, []);
-
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     if (!emailRegex.test(form.email.trim())) {
       setError("Please enter a valid email address.");
       return;
     }
     setError("");
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/waitlist/standr", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email.trim(), twitter: form.twitter.trim(), website: form.website }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -111,7 +158,10 @@ const StandrPage = () => {
           <header className="mx-auto flex w-[min(100%,760px)] items-center gap-4 rounded-2xl border border-[#3a2415] bg-[#08090f]/95 px-4 py-3">
             <div className="flex items-center gap-3">
               <img src="/standr-icon.svg" alt="STANDR DEX" className="h-8 w-8 rounded-lg object-contain" />
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#ffe3c9]">STANDR DEX</p>
+              <div className="flex flex-col leading-[1.1]">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#ffe3c9]">STANDR</p>
+                <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[#f2b569]/70">DEX</p>
+              </div>
             </div>
 
             <nav className="mx-auto hidden items-center gap-5 md:flex">
@@ -122,6 +172,17 @@ const StandrPage = () => {
               ))}
             </nav>
 
+            {/* Hamburger — mobile only */}
+            <button
+              type="button"
+              aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileOpen}
+              onClick={() => setIsMobileOpen((prev) => !prev)}
+              className="block md:hidden rounded-lg p-1.5 text-[#ffe3c9] hover:bg-white/5"
+            >
+              {isMobileOpen ? "✕" : "☰"}
+            </button>
+
             <a
               href="https://ico.eosifinance.org"
               target="_blank"
@@ -131,6 +192,33 @@ const StandrPage = () => {
               Buy $EOSIF now
             </a>
           </header>
+
+          {/* Mobile nav drawer */}
+          {isMobileOpen && (
+            <nav className="md:hidden mx-auto mt-3 w-[min(100%,760px)] flex flex-col gap-0.5 rounded-2xl border border-[#3a2415] bg-[#08090f]/95 px-4 py-3">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMobileOpen(false)}
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#efdac7] hover:bg-white/5 hover:text-white"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <div className="mt-2 border-t border-[#3a2415] pt-2">
+                <a
+                  href="https://ico.eosifinance.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileOpen(false)}
+                  className="block rounded-full border border-[#f2b569] bg-[#1a1b2e] px-4 py-2.5 text-center text-xs font-bold text-[#f2b569] transition hover:bg-[#f2b569] hover:text-[#1a1b2e]"
+                >
+                  Buy $EOSIF now
+                </a>
+              </div>
+            </nav>
+          )}
 
           <div className="mt-14 text-center">
             <h1 className="text-[clamp(2.5rem,8vw,6rem)] font-black leading-[0.9] tracking-[-0.03em] text-[#fff4e7]">
@@ -158,12 +246,14 @@ const StandrPage = () => {
           </div>
 
           <div className="mx-auto mt-10 flex max-w-[420px] gap-3 rounded-3xl bg-[#09070d] p-3 shadow-[0_18px_44px_rgba(0,0,0,0.55)]">
-            <a href={`${appOrigin}/app`} className="flex-1 rounded-full bg-[linear-gradient(135deg,#c86a2f,#a65422)] px-5 py-3 text-center text-sm font-bold text-white">
-              Explore Web App
-            </a>
-            <a href="https://t.me/" target="_blank" rel="noreferrer" className="flex-1 rounded-full border border-[#f2b569] bg-[#1a1a2e] px-5 py-3 text-center text-sm font-bold text-[#f2b569]">
-              Open in Telegram
-            </a>
+            <ComingSoonButton
+              label="Explore Web App"
+              className="rounded-full bg-[linear-gradient(135deg,#c86a2f,#a65422)] px-5 py-3 text-center text-sm font-bold text-white"
+            />
+            <ComingSoonButton
+              label="Open in Telegram"
+              className="rounded-full border border-[#f2b569] bg-[#1a1a2e] px-5 py-3 text-center text-sm font-bold text-[#f2b569]"
+            />
           </div>
 
           <a href="#standr-waitlist" className="standr-waitlist-strip mt-8">
@@ -219,10 +309,24 @@ const StandrPage = () => {
                 placeholder="@yourhandle"
                 className="mt-2 w-full rounded-xl border border-white/10 bg-[#0e162b] px-4 py-3 text-sm text-[#edf2ff] outline-none"
               />
+              <input
+                type="text"
+                name="website"
+                value={form.website || ""}
+                onChange={(e) => setForm((prev) => ({ ...prev, website: e.target.value }))}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}
+              />
               {error ? <p className="mt-3 text-xs text-[#ff9d9d]">{error}</p> : null}
               {submitted ? <p className="mt-3 text-xs text-[#8be39f]">You are on the STANDR DEX waitlist. We will keep you updated.</p> : null}
-              <button type="submit" className="mt-5 w-full rounded-full bg-[linear-gradient(120deg,rgba(185,119,69,0.96),rgba(180,74,160,0.86))] px-4 py-3 text-sm font-bold text-[#fff8f2]">
-                Join the waitlist
+              <button
+                type="submit"
+                disabled={submitting || submitted}
+                className="mt-5 w-full rounded-full bg-[linear-gradient(120deg,#071D0E,#0f3820)] px-4 py-3 text-sm font-bold text-[#d6f5e0] transition-opacity disabled:opacity-60"
+              >
+                {submitting ? "Submitting…" : submitted ? "You're on the list!" : "Join the waitlist"}
               </button>
             </form>
           </div>
@@ -278,12 +382,14 @@ const StandrPage = () => {
               AI-powered analysis, intent-based execution, and transparent architecture quality in one DeFAI workspace.
             </p>
             <div className="mx-auto mt-8 flex max-w-[420px] flex-col gap-3 sm:flex-row">
-              <a href={`${appOrigin}/app`} className="flex-1 rounded-full bg-[linear-gradient(135deg,#c86a2f,#a65422)] px-6 py-3 text-sm font-bold text-white">
-                Explore Web App
-              </a>
-              <a href="https://t.me/" target="_blank" rel="noreferrer" className="flex-1 rounded-full border border-[#f2b569] bg-[#1a1a2e] px-6 py-3 text-sm font-bold text-[#f2b569]">
-                Open Telegram
-              </a>
+              <ComingSoonButton
+                label="Explore Web App"
+                className="rounded-full bg-[linear-gradient(135deg,#c86a2f,#a65422)] px-6 py-3 text-sm font-bold text-white text-center"
+              />
+              <ComingSoonButton
+                label="Open Telegram"
+                className="rounded-full border border-[#f2b569] bg-[#1a1a2e] px-6 py-3 text-sm font-bold text-[#f2b569] text-center"
+              />
             </div>
           </div>
         </section>

@@ -89,9 +89,9 @@ const TeamSection = () => {
 
 
           </div>
-          <div className="reviews-section-card-content">
+          <div className="reviews-section-card-content" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
             {reviewsData.map((review, index) => (
-              <div className={`part-${Math.floor(index / 3) + 1}`} key={index}>
+              <div className={`part-${Math.floor(index / 3) + 1}`} key={index} style={{ flex: '0 0 auto' }}>
                 <div className="reviews-section-card-one">
                   <motion.div
                     className=""

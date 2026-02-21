@@ -7,6 +7,23 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+
+# Dev server / build logs (L6)
+build.log
+.dev-server.log
+
+# Environment files — never commit real secrets
+server/.env
+
 node_modules
 dist
 dist-ssr
@@ -22,3 +39,33 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+.env
+server/.env.local
+server/.env.development
+
+
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

@@ -1,4 +1,4 @@
-import { createCampaign, dashboard, logout, payment, transactions, withdraw, copytrade, } from '../assets';
+import { logout, payment, transactions, withdraw } from '../assets';
 // import { useDisconnect } from "@thirdweb-dev/react";
 
 // disconenct wallet
@@ -7,7 +7,7 @@ import { createCampaign, dashboard, logout, payment, transactions, withdraw, cop
 export const navlinks = [
   {
     name: 'Dashboard',
-    imgUrl: dashboard,
+    imgUrl: null,
     link: '/dashboard',
   },
 

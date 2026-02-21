@@ -13,13 +13,6 @@ const ProcessGraph = () => {
             alt=""
             className="image-5"
           />
-          <img
-            src="/assets/6726ca0f328abbff95ca0511/6726ca0f328abbff95ca05c2_content-image-2.webp"
-            loading="lazy"
-            sizes="100vw"
-            alt=""
-            className="noise"
-          />
         </div>
         <ProcessWidget title="Secure keys generated" step={1} />
         <ProcessWidget title="Data encrypted" step={2} />

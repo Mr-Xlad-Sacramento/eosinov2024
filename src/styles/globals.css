@@ -163,11 +163,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-family: "Epilogue", sans-serif;
     font-weight: 700;
     letter-spacing: 0.02em;
+    white-space: nowrap;
     transition: transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease, background var(--motion-fast) ease;
   }
 
   .btn-premium:hover {
     transform: translateY(-1px);
+  }
+
+  /* Luxury shimmer button overlay */
+  .btn-luxury-shimmer {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(110deg, #c8860a, #e8a82e, #f2b569, #e8a82e, #c8860a) !important;
+    background-size: 200% 100% !important;
+    color: #1a0f00 !important;
+    box-shadow: 0 8px 24px rgba(200, 134, 10, 0.5), 0 0 0 1px rgba(242, 181, 105, 0.4) !important;
+    animation: luxuryShimmer 3s ease-in-out infinite !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  .btn-luxury-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
+    background-size: 200% 100%;
+    animation: shimmerSweep 2.4s ease-in-out infinite;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .btn-luxury-shimmer:hover {
+    box-shadow: 0 12px 32px rgba(200, 134, 10, 0.65), 0 0 0 1px rgba(242, 181, 105, 0.6) !important;
   }
 
   .btn-premium--sm {
@@ -178,7 +207,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
   .btn-premium--md {
     height: 2.8rem;
-    padding-inline: 1.25rem;
+    padding-inline: 1.6rem;
     font-size: 0.86rem;
   }
 
@@ -201,9 +230,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   .btn-premium--brand {
-    color: #fef5ea;
-    background: linear-gradient(120deg, rgba(185, 119, 69, 0.96), rgba(180, 74, 160, 0.86));
-    box-shadow: 0 14px 30px rgba(207, 110, 46, 0.32);
+    color: #d6f5e0;
+    background: linear-gradient(120deg, #071D0E, #0f3820);
+    box-shadow: 0 14px 30px rgba(7, 29, 14, 0.55);
   }
 
   .top-announcement {
@@ -268,6 +297,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .brand-accent {
     color: var(--brand-orange);
   }
+}
+
+@keyframes luxuryShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes shimmerSweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spinOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0px); }
+  40% { transform: translateY(-18px); }
+  60% { transform: translateY(-12px); }
 }
 
 @keyframes topFloat {

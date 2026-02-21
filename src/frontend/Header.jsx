@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiMenu, FiX } from "react-icons/fi";
 import "../assets/header.css";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ const Header = () => {
   const openExternal = (url) => {
     window.open(url, "_blank", "noopener,noreferrer");
     setIsOpen(false);
+    setIsMobileOpen(false);
   };
 
   const appOrigin = window.location.origin;
@@ -31,13 +33,15 @@ const Header = () => {
           <div className="flex items-center justify-between gap-5">
             <a href="/" aria-current="page" className="flex items-center gap-3">
               <img
-                src="/assets/6726ca0f328abbff95ca0511/672f16cbf73995494b87055d_Secury.png"
+                src="/favicon.ico.jpg"
                 loading="eager"
                 alt="EOSI Finance logo"
-                className="h-10 w-auto"
+                className="h-10 w-10 rounded-full object-cover ring-1 ring-amber-600/40 shadow-[0_0_12px_rgba(185,119,69,0.35)]"
               />
+              <span className="hidden sm:block font-bold tracking-wide text-[#f6d9bf] text-sm">EOSI Finance</span>
             </a>
 
+            {/* Desktop nav */}
             <nav className="hidden items-center gap-6 md:flex">
               <a href="/" className="text-secondary transition-colors duration-180 hover:text-primary">
                 Home
@@ -104,7 +108,78 @@ const Header = () => {
                 Whitepaper
               </a>
             </nav>
+
+            {/* Hamburger button — mobile only */}
+            <button
+              type="button"
+              aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileOpen}
+              onClick={() => setIsMobileOpen((prev) => !prev)}
+              className="block md:hidden rounded-lg p-1.5 text-[#f6d9bf] hover:bg-white/5"
+            >
+              {isMobileOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+            </button>
           </div>
+
+          {/* Mobile nav drawer */}
+          {isMobileOpen && (
+            <nav className="md:hidden mt-3 flex flex-col gap-0.5 border-t border-white/10 pt-3">
+              <a
+                href="/"
+                onClick={() => setIsMobileOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-sm text-secondary hover:bg-white/5 hover:text-primary"
+              >
+                Home
+              </a>
+              <p className="px-3 pt-2 pb-0.5 text-[10px] uppercase tracking-wider text-muted">Products</p>
+              <button
+                type="button"
+                onClick={() => openExternal(`${appOrigin}/standr`)}
+                className="rounded-lg px-5 py-2.5 text-left text-sm text-secondary hover:bg-white/5 hover:text-primary"
+              >
+                STANDR DEX
+              </button>
+              <button
+                type="button"
+                onClick={() => openExternal(`${appOrigin}/prop-firm`)}
+                className="rounded-lg px-5 py-2.5 text-left text-sm text-secondary hover:bg-white/5 hover:text-primary"
+              >
+                Buy a Funded Account
+              </button>
+              <a
+                href="#roadmap"
+                onClick={() => setIsMobileOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-sm text-secondary hover:bg-white/5 hover:text-primary"
+              >
+                Roadmap
+              </a>
+              <a
+                href="#team"
+                onClick={() => setIsMobileOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-sm text-secondary hover:bg-white/5 hover:text-primary"
+              >
+                Team
+              </a>
+              <a
+                href="https://medium.com/@eosifinance_ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-sm text-secondary hover:bg-white/5 hover:text-primary"
+              >
+                Blog
+              </a>
+              <a
+                href="https://eosi-finance-1.gitbook.io/eosi-finance-documentations"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-sm text-secondary hover:bg-white/5 hover:text-primary"
+              >
+                Whitepaper
+              </a>
+            </nav>
+          )}
         </div>
       </header>
     </section>
